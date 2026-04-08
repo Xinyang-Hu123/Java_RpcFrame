@@ -67,7 +67,7 @@ public class HelloServiceImpl implements HelloService {
 
 ## 🗺️ 进行中 / 计划中
 
-- [ ] 接入 Netty 替换原生 Socket（解决阻塞 I/O 的性能瓶颈）
+- [x] 接入 Netty 替换原生 Socket（解决阻塞 I/O 的性能瓶颈）
 - [ ] 集成 Redis / Zookeeper 实现动态服务注册与发现
 - [ ] 心跳检测与断线重连
 - [ ] 负载均衡策略（轮询、随机、一致性哈希）
