@@ -98,7 +98,7 @@ sequenceDiagram
 | 技术 | 用途 |
 |------|------|
 | Java 11 | 核心语言 |
-| Java Socket | 网络通信（Netty 重构中） |
+| Netty | 网络通信 |
 | JDK 动态代理 | RPC 调用拦截 |
 | Spring Boot | IoC 容器 + 注解支持 |
 | Lombok / SLF4J | 工具链 |
