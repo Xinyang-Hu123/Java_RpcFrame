@@ -1,6 +1,9 @@
 package Client.proxy;
 
 import Client.IOClient;
+import Nacos.NacosServiceRegistry;
+import com.alibaba.nacos.api.exception.NacosException;
+import com.alibaba.nacos.api.naming.pojo.Instance;
 import common.message.RpcRequest;
 import common.message.RpcResponse;
 import lombok.AllArgsConstructor;
@@ -49,7 +52,6 @@ public class ClientProxy implements InvocationHandler {
             case 0:
                 rpcClient = new NettyRpcClient(host, port);
                 break;
-
                 case 1:
                     rpcClient = new SimpleSocketRpcClient(host, port);
                     break;
@@ -57,6 +59,15 @@ public class ClientProxy implements InvocationHandler {
     }
     public ClientProxy(String host, int port) {
         rpcClient = new NettyRpcClient(host, port);
+    }
+
+    public ClientProxy(String serviceName) throws NacosException {
+        NacosServiceRegistry registry = new NacosServiceRegistry();
+        Instance instance = registry.discovery(serviceName);
+        String host = instance.getIp();
+        int port = instance.getPort();
+        this.rpcClient = new NettyRpcClient(host, port);
+
     }
 
 
