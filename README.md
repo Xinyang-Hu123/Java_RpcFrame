@@ -21,7 +21,6 @@
 
 这是一个用于深入理解 RPC 原理的自研框架，目标是**不依赖现成 RPC 框架**，从 TCP 连接建立到方法调用拦截，逐层手动实现。
 
-动手之前我以为 RPC 就是"封装一下网络请求"，做完才意识到光是解决 TCP 粘包问题就要设计整套协议头，序列化和反序列化的类型对齐也踩了不少坑。
 
 ---
 
@@ -68,7 +67,7 @@ public class HelloServiceImpl implements HelloService {
 ## 🗺️ 进行中 / 计划中
 
 - [x] 接入 Netty 替换原生 Socket（解决阻塞 I/O 的性能瓶颈）
-- [ ] 集成 Redis / Zookeeper 实现动态服务注册与发现
+- [x] 集成 Nacos 实现动态服务注册与发现
 - [ ] 心跳检测与断线重连
 - [ ] 负载均衡策略（轮询、随机、一致性哈希）
 
@@ -89,8 +88,6 @@ sequenceDiagram
     Server-->>Client: 6. 执行方法 + 返回结果
 ```
 
-> 注：注册中心部分目前尚未实现，架构图为设计目标。
-
 ---
 
 ## 🛠️ 技术栈
@@ -102,6 +99,7 @@ sequenceDiagram
 | JDK 动态代理 | RPC 调用拦截 |
 | Spring Boot | IoC 容器 + 注解支持 |
 | Lombok / SLF4J | 工具链 |
+| Nacos | 服务注册与发现 |
 
 ---
 
