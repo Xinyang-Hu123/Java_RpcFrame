@@ -67,7 +67,7 @@ public class HelloServiceImpl implements HelloService {
 ## 🗺️ 进行中 / 计划中
 
 - [x] 接入 Netty 替换原生 Socket（解决阻塞 I/O 的性能瓶颈）
-- [x] 集成 Nacos 实现动态服务注册与发现
+- [x] 集成 nacos 实现动态服务注册与发现
 - [ ] 心跳检测与断线重连
 - [ ] 负载均衡策略（轮询、随机、一致性哈希）
 
@@ -76,16 +76,16 @@ public class HelloServiceImpl implements HelloService {
 ## 🏗️ 整体架构
 ```mermaid
 sequenceDiagram
-    participant Client as 服务消费方 (Client)
+    participant client as 服务消费方 (client)
     participant Registry as 注册中心 (Registry)
-    participant Server as 服务提供方 (Server)
+    participant server as 服务提供方 (server)
     
-    Server->>Registry: 1. 注册服务（IP、端口、接口名）
-    Client->>Registry: 2. 订阅服务，拉取节点列表
-    Registry-->>Client: 3. 返回可用服务节点
-    Client->>Client: 4. 动态代理拦截方法调用
-    Client->>Server: 5. 序列化 + TCP 传输
-    Server-->>Client: 6. 执行方法 + 返回结果
+    server->>Registry: 1. 注册服务（IP、端口、接口名）
+    client->>Registry: 2. 订阅服务，拉取节点列表
+    Registry-->>client: 3. 返回可用服务节点
+    client->>client: 4. 动态代理拦截方法调用
+    client->>server: 5. 序列化 + TCP 传输
+    server-->>client: 6. 执行方法 + 返回结果
 ```
 
 ---
@@ -99,7 +99,7 @@ sequenceDiagram
 | JDK 动态代理 | RPC 调用拦截 |
 | Spring Boot | IoC 容器 + 注解支持 |
 | Lombok / SLF4J | 工具链 |
-| Nacos | 服务注册与发现 |
+| nacos | 服务注册与发现 |
 
 ---
 
